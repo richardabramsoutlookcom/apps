@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Connect 4</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="header">
+        <h1>Connect 4</h1>
+        <p class="status" id="status">Player 1: Red</p>
+      </header>
+
+      <section class="board-wrap">
+        <div class="column-buttons" id="column-buttons"></div>
+        <div class="board" id="board" role="grid" aria-label="Connect 4 board"></div>
+      </section>
+
+      <footer class="controls">
+        <button id="reset" class="reset">Reset game</button>
+      </footer>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
