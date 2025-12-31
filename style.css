@@ -39,16 +39,52 @@ body {
   flex-wrap: wrap;
 }
 
+.title {
+  display: grid;
+  gap: 6px;
+}
+
 h1 {
   margin: 0;
   font-size: clamp(2rem, 3vw, 2.8rem);
   letter-spacing: 0.04em;
 }
 
+.subtitle {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.settings {
+  display: grid;
+  gap: 10px;
+  justify-items: end;
+}
+
 .status {
   margin: 0;
   font-size: 1rem;
   color: var(--muted);
+}
+
+.select {
+  display: grid;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.select select {
+  background: #202936;
+  border: 1px solid #344155;
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .board-wrap {
@@ -94,6 +130,8 @@ h1 {
   background: var(--board);
   padding: 16px;
   border-radius: 16px;
+  position: relative;
+  overflow: hidden;
 }
 
 .cell {
@@ -108,16 +146,30 @@ h1 {
   overflow: hidden;
 }
 
+.cell.impact::after {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  animation: ripple 0.35s ease-out;
+}
+
 .token {
   width: 84%;
   height: 84%;
   border-radius: 50%;
   transform: translateY(-120%);
   transition: transform 0.25s ease;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
 }
 
 .token.drop {
   transform: translateY(0%);
+}
+
+.token.win {
+  animation: pulse 1.2s ease-in-out infinite;
 }
 
 .token.player-1 {
@@ -126,6 +178,25 @@ h1 {
 
 .token.player-2 {
   background: radial-gradient(circle at 30% 30%, #ffe07a, var(--p2));
+}
+
+.spark {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.9), transparent 70%);
+  animation: spark 0.6s ease-out forwards;
+}
+
+.board.celebrate {
+  box-shadow: 0 0 35px rgba(255, 255, 255, 0.15);
+  animation: glow 2s ease-in-out infinite;
+}
+
+.board.defeat {
+  animation: shake 0.5s ease-in-out 2;
 }
 
 .controls {
@@ -161,5 +232,64 @@ h1 {
 
   .column-buttons {
     gap: 8px;
+  }
+
+  .settings {
+    justify-items: start;
+  }
+}
+
+@keyframes ripple {
+  from {
+    transform: scale(0.6);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(1.1);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0 rgba(246, 201, 14, 0.35));
+  }
+  50% {
+    filter: drop-shadow(0 0 14px rgba(246, 201, 14, 0.35));
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-6px);
+  }
+  75% {
+    transform: translateX(6px);
+  }
+}
+
+@keyframes spark {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
   }
 }

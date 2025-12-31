@@ -9,8 +9,23 @@
   <body>
     <main class="app">
       <header class="header">
-        <h1>Connect 4</h1>
-        <p class="status" id="status">Player 1: Red</p>
+        <div class="title">
+          <h1>Connect 4</h1>
+          <p class="subtitle">1 Player vs Computer</p>
+        </div>
+        <div class="settings">
+          <label class="select" for="difficulty">
+            <span>Difficulty</span>
+            <select id="difficulty">
+              <option value="1">Rookie</option>
+              <option value="2">Casual</option>
+              <option value="3" selected>Skilled</option>
+              <option value="4">Hard</option>
+              <option value="5">Expert</option>
+            </select>
+          </label>
+          <p class="status" id="status">Your turn · Red</p>
+        </div>
       </header>
 
       <section class="board-wrap">
